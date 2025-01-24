@@ -2,13 +2,6 @@ services:
   app:
     tty: true
     image: bitnami/laravel:10
-    environment:
-      - LARAVEL_DATABASE_TYPE=mysql
-      - LARAVEL_DATABASE_HOST=mysql
-      - LARAVEL_DATABASE_PORT=3306
-      - LARAVEL_DATABASE_NAME=$DB_DATABASE
-      - LARAVEL_DATABASE_USER=$DB_USERNAME
-      - LARAVEL_DATABASE_PASSWORD=$DB_PASSWORD
     ports:
       - 8000:8000
     volumes:
