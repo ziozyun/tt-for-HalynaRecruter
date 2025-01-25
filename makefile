@@ -16,6 +16,9 @@ migrate:
 seed:
 	docker-compose exec app php artisan db:seed
 
+queue:
+	docker-compose exec app php artisan queue:listen
+
 perm:
 	sudo chmod -R 777 src/storage src/bootstrap/cache
 
