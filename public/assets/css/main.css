@@ -1,11 +1,80 @@
 * {
   font-family: "Verdana", serif;
+  box-sizing: border-box;
+  color: white;
+}
+
+.hover-underline:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(to bottom right, #6a11cb, #2575fc, #00d2ff);
+}
+
+fieldset {
+  border: none;
+  display: flex;
+  padding: 0;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+select,
+textarea,
+input {
+  border: none;
+  border-bottom: 4px solid blueviolet;
+  padding: 10px;
+  border-radius: 4px;
+  color: black;
+  width: 100%;
+  max-width: 200px;
+}
+
+option {
+  color: black;
+}
+
+select,
+textarea,
+input:focus {
+  outline: none;
+  border-bottom: 4px solid violet;
+}
+
+@media (max-width: 400px) {
+  fieldset label {
+    display: none;
+  }
+
+  select,
+  textarea,
+  fieldset input {
+    max-width: 100%;
+  }
+}
+
+button {
+  padding: 14px;
+  background-color: #6a11cb;
+  border: 2px solid #6a11cb;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #43008a;
+  border-color: #43008a;
+}
+
+button:disabled {
+  background-color: gray;
 }
 
 .wrapper {
@@ -16,7 +85,6 @@ body {
 
 header {
   height: 80px;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,4 +101,55 @@ main .page {
 
 main input[name="page"]:checked+.page {
   display: block;
+}
+
+main .page form {
+  margin: 80px auto;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, .3);
+  padding: 60px 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+main .page form .caption {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+main .page form button {
+  margin: 10px 0;
+}
+
+main .page.tasks .stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+main .page.tasks #cards {
+  padding: 10px 0;
+}
+
+main .page.tasks .card {
+  background-color: rgba(255, 255, 255, .3);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+main .page.tasks .card>div {
+  margin-bottom: 10px;
+}
+
+main .page.tasks .card button {
+  margin-right: 5px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }

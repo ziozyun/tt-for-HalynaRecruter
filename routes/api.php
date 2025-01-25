@@ -22,6 +22,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
   Route::post('logout', [AuthController::class, 'logout']);
   Route::get('me', [AuthController::class, 'me']);
-  Route::resource('tasks', TaskController::class);
+  Route::get('tasks/stats', [TaskController::class, 'stats']);
   Route::patch('tasks/{task}/status', [TaskController::class, 'updateStatus']);
+  Route::resource('tasks', TaskController::class);
 });

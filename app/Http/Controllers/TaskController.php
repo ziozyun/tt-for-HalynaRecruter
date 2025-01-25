@@ -9,6 +9,16 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('task.owner')->only([
+            'show',
+            'update',
+            'destroy',
+            'updateStatus',
+        ]);
+    }
+
     public function index(TaskFilterRequest $request)
     {
         /** @var App\Models\User */
@@ -23,6 +33,8 @@ class TaskController extends Controller
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
+
+        $query->orderBy('id', 'desc');
 
         $tasks = $query->simplePaginate(10);
 
@@ -89,6 +101,11 @@ class TaskController extends Controller
 
     private function getTaskFields(TaskRequest $request): array
     {
-        return $request->only(['title', 'description', 'status', 'due_date']);
+        $fields = $request->only(['title', 'description', 'status', 'due_date']);
+        if ($fields['status'] && is_null($fields['due_date'])) {
+            $fields['due_date'] = now();
+        }
+
+        return $fields;
     }
 }

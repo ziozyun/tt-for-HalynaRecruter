@@ -57,7 +57,12 @@ class AuthController extends Controller
         /** @var App\Models\User */
         $user = auth()->user();
 
-        $user->currentAccessToken()->delete();
+        $token = $user->currentAccessToken();
+        if ($token instanceof \Laravel\Sanctum\PersonalAccessToken) {
+            $token->delete();
+        }
+
+        Auth::guard('web')->logout();
 
         return response()->json(['success' => true]);
     }
